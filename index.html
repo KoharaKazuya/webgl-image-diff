@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="author" content="KoharaKazuya" />
+    <meta
+      name="description"
+      content="WebGL で (CPU 処理と比べて) 高速に 2 画像を比較してピクセル単位の差分を表示する実装例です。"
+    />
+    <meta name="keywords" content="webgl,image processing in web" />
+    <title>WebGL Image Diff</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      .side-by-side {
+        display: flex;
+        align-items: flex-start;
+      }
+      .clipper {
+        outline: solid 1px black;
+        margin: 10px;
+        overflow: auto;
+      }
+    </style>
+    <script type="module" src="main.js"></script>
+  </head>
+  <body>
+    <p>
+      WebGL で (CPU 処理と比べて) 高速に 2
+      画像を比較してピクセル単位の差分を表示する実装例です。
+    </p>
+    <div>
+      <input type="file" accept="image/*" name="source" />
+      <input type="file" accept="image/*" name="dist" />
+      <label
+        >しきい値:
+        <input type="range" name="threshold" min="0" max="1" step="0.01"
+      /></label>
+    </div>
+    <div class="side-by-side">
+      <div class="clipper">
+        <canvas id="source" width="32" height="32"></canvas>
+      </div>
+      <div class="clipper">
+        <canvas id="glCanvas" width="32" height="32"></canvas>
+      </div>
+      <div class="clipper">
+        <canvas id="dist" width="32" height="32"></canvas>
+      </div>
+    </div>
+  </body>
+</html>
